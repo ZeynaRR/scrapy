@@ -42,11 +42,11 @@ class ResponseTypes:
         """Return the most appropriate Response class for the given mimetype"""
         # if mimetype is None:
         #     return Response
-        if mimetype in self.classes:
-            return self.classes[mimetype]
-        else:
-            basetype = f"{mimetype.split('/')[0]}/*"
-            return self.classes.get(basetype | None, Response)
+        # if mimetype in self.classes:
+        #     return self.classes[mimetype]
+        # else:
+        #     basetype = f"{mimetype.split('/')[0]}/*"
+        #     return self.classes.get(basetype | None, Response)
 
     def from_content_type(self, content_type, content_encoding=None):
         """Return the most appropriate Response class from an HTTP Content-Type
