@@ -44,9 +44,7 @@ class ResponseTypes:
             return Response
         elif mimetype in self.classes:
             return self.classes[mimetype]
-        else:
-            basetype = f"{mimetype.split('/')[0]}/*"
-            return self.classes.get(basetype, Response)
+        return self.classes.get(f"{mimetype.split('/')[0]}/*", Response)
 
     def from_content_type(self, content_type, content_encoding=None):
         """Return the most appropriate Response class from an HTTP Content-Type
