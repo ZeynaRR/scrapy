@@ -23,9 +23,13 @@ class CachingThreadedResolver(ThreadedResolver):
 
     @classmethod
     def from_crawler(cls, crawler, reactor):
+        cache_size = 0
         if crawler.settings.getbool('DNSCACHE_ENABLED'):
-             return cls(reactor, crawler.settings.getint('DNSCACHE_SIZE'), crawler.settings.getfloat('DNS_TIMEOUT'))
-        return cls(reactor, 0, crawler.settings.getfloat('DNS_TIMEOUT'))
+            cache_size = crawler.settings.getint('DNSCACHE_SIZE')
+            return cls(reactor, cache_size, crawler.settings.getfloat('DNS_TIMEOUT'))
+            
+            
+        
 
     def install_on_reactor(self):
         self.reactor.installResolver(self)
